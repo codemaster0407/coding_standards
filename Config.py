@@ -1,0 +1,1 @@
+WEBPAGES_JSON_PATH = 'webpages.json'
