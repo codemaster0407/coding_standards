@@ -42,7 +42,3 @@ def create_docx_from_json(json_path, output_path):
     doc.save(output_path)
     print(f"Document saved successfully to {output_path}")
 
-if __name__ == "__main__":
-    json_file = 'coding_standards_extracted.json'
-    output_docx = 'Coding_Standards.docx'
-    create_docx_from_json(json_file, output_docx)

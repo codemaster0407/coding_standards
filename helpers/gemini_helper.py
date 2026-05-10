@@ -6,6 +6,11 @@ from dotenv import load_dotenv
 load_dotenv()
 
 
+def chunk_string(text, chunk_size):
+    """Splits a large string into smaller chunks of chunk_size."""
+    return [text[i:i+chunk_size] for i in range(0, len(text), chunk_size)]
+
+
 def gemini_api_call_for_coding_standard_doc(raw_text: str, pydantic_class) -> str:
     """
     Takes the raw text extracted by pdfplumber, a target Pydantic class, 
