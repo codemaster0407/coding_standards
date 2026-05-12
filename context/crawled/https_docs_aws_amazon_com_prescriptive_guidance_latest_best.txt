@@ -1,0 +1,420 @@
+## Select your cookie preferences
+We use essential cookies and similar tools that are necessary to provide our site and services. We use performance cookies to collect anonymous statistics, so we can understand how customers use our site and make improvements. Essential cookies cannot be deactivated, but you can choose “Customize” or “Decline” to decline performance cookies.   
+  
+If you agree, AWS and approved third parties will also use cookies to provide useful site features, remember your preferences, and display relevant content, including relevant advertising. To accept or decline all non-essential cookies, choose “Accept” or “Decline.” To make more detailed choices, choose “Customize.”
+AcceptDeclineCustomize
+## Customize cookie preferences
+We use cookies and similar tools (collectively, "cookies") for the following purposes.
+### Essential
+Essential cookies are necessary to provide our site and services and cannot be deactivated. They are usually set in response to your actions on the site, such as setting your privacy preferences, signing in, or filling in forms. 
+### Performance
+Performance cookies provide anonymous statistics about how customers navigate our site so we can improve site experience and performance. Approved third parties may perform analytics on our behalf, but they cannot use the data for their own purposes.
+Allowed
+### Functional
+Functional cookies help us provide useful site features, remember your preferences, and display relevant content. Approved third parties may set these cookies to provide certain site features. If you do not allow these cookies, then some or all of these services may not function properly.
+Allowed
+### Advertising
+Advertising cookies may be set through our site by us or our advertising partners and help us deliver relevant marketing content. If you do not allow these cookies, you will experience less relevant advertising.
+Allowed
+Blocking some types of cookies may impact your experience of our sites. You may review and change your choices at any time by selecting Cookie preferences in the footer of this site. We and selected third-parties use cookies or similar technologies as specified in the [AWS Cookie Notice](https://aws.amazon.com/legal/cookies/).
+CancelSave preferences
+## Unable to save cookie preferences
+We will only store essential cookies at this time, because we were unable to save your cookie preferences.  
+  
+If you want to change your cookie preferences, try again later using the link in the AWS console footer, or contact support if the problem persists.
+Dismiss
+[Skip to main content](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#skip-link)
+[English](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html "Language Selector. Currently set to: English")
+[Preferences ](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html)
+[Contact Us](https://aws.amazon.com/contact-us/?cmpid=docs_headercta_contactus)
+[Feedback](https://docs.aws.amazon.com/feedback/doc-feedback.html?hidden_service_name=ProServe+Enterprise+GPS&topic_url=https%3A%2F%2Fdocs.aws.amazon.com%2Fprescriptive-guidance%2Flatest%2Fbest-practices-cdk-typescript-iac%2Ftypescript-best-practices.html)
+[![AWS Documentation](https://docs.aws.amazon.com/assets/r/images/aws_logo_light.svg)](https://docs.aws.amazon.com)
+[Get started](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html)
+[Service guides](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html)
+[Developer tools](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html)
+[AI resources](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html)
+[Create an AWS Account](https://portal.aws.amazon.com)
+## AWS Prescriptive Guidance
+### Best practices for using the AWS CDK in TypeScript to create IaC projects
+  * [Introduction](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/introduction.html)
+  * [Best practices](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/best-practices.html)
+    * [Organize code for large-scale projects](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/organizing-code-best-practices.html)
+    * [Develop reusable patterns](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/reusable-patterns-best-practices.html)
+    * [Create or extend constructs](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/constructs-best-practices.html)
+    * [Follow TypeScript best practices](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html)
+    * [Scan for security vulnerabilities and formatting errors](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/security-formatting-best-practices.html)
+    * [Develop and refine documentation](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/documentation-best-practices.html)
+    * [Adopt a test-driven development approach](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/development-best-practices.html)
+    * [Use release and version control for constructs](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/version-control-best-practices.html)
+    * [Enforce library version management](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/library-management-best-practices.html)
+  * [FAQ](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/faq.html)
+  * [Next steps](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/next-steps.html)
+  * [Resources](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/resources.html)
+  * [Document history](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/doc-history.html)
+  * [Glossary](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/apg-gloss.html)
+
+
+  1. [Documentation](https://docs.aws.amazon.com/index.html)
+  2. ...
+  3. [AWS Prescriptive Guidance](https://aws.amazon.com/prescriptive-guidance/)
+  4. Best practices for using the AWS CDK in TypeScript to create IaC projects
+
+
+  1. [Documentation](https://docs.aws.amazon.com/index.html)
+  2. [AWS Prescriptive Guidance](https://aws.amazon.com/prescriptive-guidance/)
+  3. Best practices for using the AWS CDK in TypeScript to create IaC projects
+
+
+# 
+Follow TypeScript best practices
+[](https://docs.aws.amazon.com/pdfs/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/best-practices-cdk-typescript-iac.pdf#typescript-best-practices)
+[](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/best-practices-cdk-typescript-iac.rss)
+[](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.md "Download Markdown")
+Focus mode
+Follow TypeScript best practices - AWS Prescriptive Guidance
+[](https://docs.aws.amazon.com/pdfs/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/best-practices-cdk-typescript-iac.pdf#typescript-best-practices "Open PDF")
+[Documentation](https://docs.aws.amazon.com/index.html)[AWS Prescriptive Guidance](https://aws.amazon.com/prescriptive-guidance/)[Best practices for using the AWS CDK in TypeScript to create IaC projects](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/introduction.html)
+[Describe your data](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#describe-data)[Use enums](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#use-enums)[Use interfaces](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#use-interfaces)[Extend interfaces](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#extend-interfaces)[Avoid empty interfaces](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#empty-interfaces)[Use factories](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#use-factories)[Use destructuring on properties](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#destructuring-props)[Define standard naming conventions](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#naming-conventions)[Don't use the var keyword](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#var-keyword)[Consider using ESLint and Prettier](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#eslint-prettier)[Use access modifiers](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#access-modifiers)[Use utility types](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#utility-types)
+TypeScript is a language that extends the capabilities of JavaScript. It's a strongly typed and object-oriented language. You can use TypeScript to specify the types of data being passed within your code and has the ability to report errors when the types don't match. This section provides an overview of TypeScript best practices.
+## Describe your data
+You can use TypeScript to describe the shape of objects and functions in your code. Using the `any` type is equivalent to opting out of type checking for a variable. We recommend that you avoid using `any` in your code. Here is an example.
+
+```
+
+
+
+
+
+
+type Result = "success" | "failure"
+function verifyResult(result: Result) {
+    if (result === "success") {
+        console.log("Passed");
+    } else {
+        console.log("Failed")
+    }
+}
+```
+
+## Use enums
+You can use enums to define a set of named constants and define standards that can be reused in your code base. We recommend that you export your enums one time at the global level, and then let other classes import and use the enums. Assume that you want to create a set of possible actions to capture the events in your code base. TypeScript provides both numeric and string-based enums. The following example uses an enum.
+
+```
+
+
+
+
+
+
+enum EventType {
+    Create,
+    Delete,
+    Update
+}
+
+class InfraEvent {
+    constructor(event: EventType) {
+        if (event === EventType.Create) {
+            // Call for other function
+            console.log(`Event Captured :${event}`);
+        }
+    }
+}
+
+let eventSource: EventType = EventType.Create;
+const eventExample = new InfraEvent(eventSource)
+```
+
+## Use interfaces
+An interface is a contract for the class. If you create a contract, then your users must comply with the contract. In the following example, an interface is used to standardize the `props` and ensure that callers provide the expected parameter when using this class.
+
+```
+
+
+
+
+
+
+import { Stack, App } from "aws-cdk-lib";
+import { Construct } from "constructs";
+
+interface BucketProps {
+    name: string;
+    region: string;
+    encryption: boolean;
+
+}
+
+class S3Bucket extends Stack {
+    constructor(scope: Construct, props: BucketProps) {
+        super(scope);
+        console.log(props.name);
+
+    }
+}
+const app = App();
+const myS3Bucket = new S3Bucket(app, {
+    name: "amzn-s3-demo-bucket",
+    region: "us-east-1",
+    encryption: false
+})
+```
+
+Some properties can only be modified when an object is first created. You can specify this by putting `readonly` before the name of the property, as the following example shows.
+
+```
+
+
+
+
+
+
+interface Position {
+    readonly latitude: number;
+    readonly longitute: number;
+}
+```
+
+## Extend interfaces
+Extending interfaces reduces duplication, because you don't have to copy the properties between interfaces. Also, the reader of your code can easily understand the relationships in your application.
+
+```
+
+
+
+
+
+
+ interface BaseInterface{
+    name: string;
+  }
+  interface EncryptedVolume extends BaseInterface{
+      keyName: string;
+  }
+  interface UnencryptedVolume extends BaseInterface {
+      tags: string[];
+  }
+```
+
+## Avoid empty interfaces
+We recommend that you avoid empty interfaces due to the potential risks they create. In the following example, there's an empty interface called `BucketProps`. The `myS3Bucket1` and `myS3Bucket2` objects are both valid, but they follow different standards because the interface doesn’t enforce any contracts. The following code will compile and print the properties but this introduces inconsistency in your application.
+
+```
+
+
+
+
+
+
+interface BucketProps {}
+
+class S3Bucket implements BucketProps {
+    constructor(props: BucketProps){
+        console.log(props);
+    }
+}
+
+const myS3Bucket1 = new S3Bucket({
+    name: "amzn-s3-demo-bucket",
+    region: "us-east-1",
+    encryption: false,
+});
+
+const myS3Bucket2 = new S3Bucket({
+    name: "amzn-s3-demo-bucket",
+});
+```
+
+## Use factories
+In an Abstract Factory pattern, an interface is responsible for creating a factory of related objects without explicitly specifying their classes. For example, you can create a Lambda factory for creating Lambda functions. Instead of creating a new Lambda function within your construct, you're delegating the creation process to the factory. For more information on this design pattern, see [Abstract Factory in TypeScript](https://refactoring.guru/design-patterns/abstract-factory/typescript/example) in the Refactoring.Guru documentation.
+## Use destructuring on properties
+Destructuring, introduced in ECMAScript 6 (ES6), is a JavaScript feature that gives you the ability to extract multiple pieces of data from an array or object and assign them to their own variables.
+
+```
+
+
+
+
+
+
+const object = {
+    objname: "obj",
+    scope: "this",
+};
+
+const oName = object.objname;
+const oScop = object.scope;
+
+const { objname, scope } = object;
+```
+
+## Define standard naming conventions
+Enforcing a naming convention keeps the code base consistent and reduces overhead when thinking about how to name a variable. We recommend the following:
+  * Use camelCase for variable and function names.
+  * Use UPPER_CASE for global constants to clearly indicate immutable compile-time values.
+  * Use PascalCase for class names and interface names.
+  * Use camelCase for interface members.
+  * Use PascalCase for type names and enum names.
+  * Name files with camelCase (for example, `ebsVolumes.tsx` or `storage.ts`)
+
+
+The following shows examples of these recommended naming conventions:
+
+```
+
+
+
+
+
+
+// Variables and functions
+const userName = 'john';
+function getUserData() { }
+
+// Global constants
+const MAX_RETRY_ATTEMPTS = 3;
+const API_BASE_URL = 'https://api.example.com';
+
+// Classes and interfaces
+class DatabaseConnection { }
+interface UserProfile { }
+
+// Types and enums
+type ResponseStatus = 'success' | 'error';
+enum HttpStatusCode { }
+
+```
+
+## Don't use the var keyword
+The `let` statement is used to declare a local variable in TypeScript. It's similar to the `var` keyword, but it has some restrictions in scoping compared to the `var` keyword. A variable declared in a block with `let` is only available for use within that block. The `var` keyword cannot be block-scoped, which means it can be accessed outside a particular block (represented by `{}`) but not outside of the function it’s defined in. You can redeclare and update `var` variables. It's a best practice to avoid using the `var` keyword.
+## Consider using ESLint and Prettier
+ESLint statically analyzes your code to quickly find issues. You can use ESLint to create a series of assertions (called _lint rules_) that define how your code should look or behave. ESLint also has auto-fixer suggestions to help you improve your code. Finally, you can use ESLint to load in lint rules from shared plugins.
+Prettier is a well-known code formatter that supports a variety of different programming languages. You can use Prettier to set your code style so that you can avoid manually formatting your code. After installation, you can update your `package.json` file and run the `npm run format` and `npm run lint` commands.
+The following example shows you how to enable ESLint and the Prettier formatter for your AWS CDK project.
+
+```
+
+
+
+
+
+
+"scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk",
+    "lint": "eslint --ext .js,.ts .",
+    "format": "prettier --ignore-path .gitignore --write '**/*.+(js|ts|json)'"
+}
+```
+
+## Use access modifiers
+The private modifier in TypeScript limits visibility to the same class only. When you add the private modifier to a property or method, you can access that property or method within the same class.
+The public modifier allows class properties and methods to be accessible from all locations. If you don't specify any access modifiers for properties and methods, they will take the public modifier by default.
+The protected modifier allows properties and methods of a class to be accessible within the same class and within subclasses. Use the protected modifier when you expect to create subclasses in your AWS CDK application.
+## Use utility types
+_Utility types_ in TypeScript are predefined type functions that perform transformations and operations on existing types. This helps you create new types based on existing types. For example, you can change or extract properties, make properties optional or required, or create immutable versions of types. By using utility types, you can define more precise types and catch potential errors at compile time.
+### Partial<Type>
+`Partial` marks all members of an input type `Type` as optional. This utility returns a type that represents all subsets of a given type. The following is an example of `Partial`.
+
+```
+
+
+
+
+
+
+interface Dog {
+  name: string;
+  age: number;
+  breed: string;
+  weight: number;
+}
+
+let partialDog: Partial<Dog> = {};
+
+```
+
+### Required<Type>
+`Required` does the opposite of `Partial`. It makes all members of an input type `Type` non-optional (in other words, required). The following is an example of `Required`.
+
+```
+
+
+
+
+
+
+interface Dog {
+  name: string;
+  age: number;
+  breed: string;
+  weight?: number;
+}
+
+let dog: Required<Dog> = { 
+  name: "scruffy",
+  age: 5,
+  breed: "labrador",
+  weight: 55 // "Required" forces weight to be defined
+};
+
+```
+
+[Document Conventions](https://docs.aws.amazon.com/general/latest/gr/docconventions.html)
+Create or extend constructs
+Scan for security vulnerabilities and formatting errors
+Did this page help you? - Yes
+Thanks for letting us know we're doing a good job!
+If you've got a moment, please tell us what we did right so we can do more of it.
+Did this page help you? - No
+Thanks for letting us know this page needs work. We're sorry we let you down.
+If you've got a moment, please tell us how we can make the documentation better.
+  * ### On this page
+    1. [Describe your data](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#describe-data)
+    2. [Use enums](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#use-enums)
+    3. [Use interfaces](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#use-interfaces)
+    4. [Extend interfaces](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#extend-interfaces)
+    5. [Avoid empty interfaces](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#empty-interfaces)
+    6. [Use factories](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#use-factories)
+    7. [Use destructuring on properties](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#destructuring-props)
+    8. [Define standard naming conventions](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#naming-conventions)
+    9. [Don't use the var keyword](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#var-keyword)
+    10. [Consider using ESLint and Prettier](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#eslint-prettier)
+    11. [Use access modifiers](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#access-modifiers)
+    12. [Use utility types](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html#utility-types)
+  * Did this page help you?
+Yes
+No
+[Provide feedback](https://docs.aws.amazon.com/feedback/doc-feedback.html?hidden_service_name=ProServe+Enterprise+GPS&topic_url=https%3A%2F%2Fdocs.aws.amazon.com%2Fprescriptive-guidance%2Flatest%2Fbest-practices-cdk-typescript-iac%2Ftypescript-best-practices.html)
+
+
+#### Next topic:
+[Scan for security vulnerabilities and formatting errors](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/security-formatting-best-practices.html)
+#### Previous topic:
+[Create or extend constructs](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/constructs-best-practices.html)
+## Get Started
+[AWS Hands-On Tutorials](https://aws.amazon.com/getting-started/hands-on/)
+[AWS Solutions Library](https://aws.amazon.com/solutions/)
+[AWS Decision Guides](https://aws.amazon.com/getting-started/decision-guides/)
+## Service Guides
+[Choosing a generative AI service](https://docs.aws.amazon.com/generative-ai-on-aws-how-to-choose/)
+[AWS service guides](https://docs.aws.amazon.com/#products)
+[AWS CLI Tutorials on GitHub](https://github.com/aws-samples/sample-developer-tutorials)
+## Developer Tools
+[AWS Code Example Library](https://docs.aws.amazon.com/code-library/latest/ug/what-is-code-library.html)
+[AWS CLI](https://docs.aws.amazon.com/cli/)
+[AWS Builder Center](https://builder.aws.com/)
+[AWS Developer Tools Blog](https://aws.amazon.com/blogs/developer/)
+## Helpful Links
+[Download the AWS Docs MCP Server](https://github.com/awslabs/mcp/tree/main/src/aws-documentation-mcp-server)
+[Sign into the AWS Console](https://console.aws.amazon.com/)
+[ AWS re:Post](https://repost.aws/)
+[Privacy](https://aws.amazon.com/privacy)
+[Site terms](https://aws.amazon.com/terms)
+[Cookie preferences](https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html)
+© 2026, Amazon Web Services, Inc. or its affiliates. All rights reserved.
+English
+Language selector
+Top

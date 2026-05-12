@@ -1,0 +1,52 @@
+[
+  {
+    "key": "query_01",
+    "file": "context/tavily/query_01.json",
+    "prompt": "Best practices for TypeScript coding standards in a monorepo"
+  },
+  {
+    "key": "query_02",
+    "file": "context/tavily/query_02.json",
+    "prompt": "Next.js coding standards for scalable frontend development"
+  },
+  {
+    "key": "query_03",
+    "file": "context/tavily/query_03.json",
+    "prompt": "Node.js backend coding standards for high-performance APIs"
+  },
+  {
+    "key": "query_04",
+    "file": "context/tavily/query_04.json",
+    "prompt": "React component architecture best practices for large-scale applications"
+  },
+  {
+    "key": "query_05",
+    "file": "context/tavily/query_05.json",
+    "prompt": "Drizzle ORM best practices for database schema management"
+  },
+  {
+    "key": "query_06",
+    "file": "context/tavily/query_06.json",
+    "prompt": "Neon serverless Postgres connection optimization techniques"
+  },
+  {
+    "key": "query_07",
+    "file": "context/tavily/query_07.json",
+    "prompt": "Prettier configuration best practices for consistent code formatting"
+  },
+  {
+    "key": "query_08",
+    "file": "context/tavily/query_08.json",
+    "prompt": "React Testing Library best practices for unit testing and integration testing"
+  },
+  {
+    "key": "query_09",
+    "file": "context/tavily/query_09.json",
+    "prompt": "Monorepo folder structure and package management best practices"
+  },
+  {
+    "key": "query_10",
+    "file": "context/tavily/query_10.json",
+    "prompt": "TypeScript coding standards for maintainable and efficient codebases"
+  }
+]

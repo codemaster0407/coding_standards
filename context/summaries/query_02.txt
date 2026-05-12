@@ -1,0 +1,99 @@
+Project structure guidelines:
+* Set up a well-organized project structure to make the codebase intuitive and maintainable
+* Recommended structure for Next.js applications includes:
+	+ `src/` directory with subdirectories for `app/`, `features/`, `components/`, `services/`, `hooks/`, `lib/`, `store/`, `types/`, and `config/`
+	+ `app/` directory for routes
+	+ `features/` directory for feature-driven architecture
+	+ `components/` directory with subdirectories for `ui/` and `layout/`
+	+ `services/` directory for API interactions
+	+ `hooks/` directory for custom hooks
+	+ `lib/` directory for utility functions
+	+ `store/` directory for state management
+	+ `types/` directory for type definitions
+	+ `config/` directory for environment and configuration settings
+
+Naming conventions:
+* Consistency in naming makes code more readable
+* Examples of naming conventions include:
+	+ `UserProfile.tsx`
+	+ `useAuth.ts`
+	+ `formatDate.ts`
+	+ `MAX_RETRY_COUNT`
+	+ `User`
+	+ `ApiResponse`
+
+Code style and formatting:
+* Set up ESLint and Prettier for consistent code style
+* Example ESLint configuration:
+	+ `extends`: `next/core-web-vitals` and `prettier`
+	+ `rules`: `no-console` set to `warn` and `prefer-const` set to `error`
+* Example Prettier configuration:
+	+ `semi`: `true`
+	+ `trailingComma`: `es5`
+	+ `singleQuote`: `true`
+	+ `tabWidth`: `2`
+	+ `printWidth`: `80`
+
+Best practices:
+* Write self-documenting code, but add comments for complex logic
+* Use absolute imports (`@/components/...`)
+* Enforce strong typing with central types
+* Manage environment and configuration settings properly
+* Avoid hardcoding values across the codebase
+* Prefer server components and dynamic imports for heavy modules
+* Split code by routes for better performance
+* Use `next/image` for image optimization
+
+Pitfalls and anti-patterns to avoid:
+* Putting all components, hooks, and logic directly inside the `app/` directory
+* Not using a feature-driven or domain-driven architecture
+* Not setting up a clear and robust architecture from the beginning
+* Not using a shared utility layer to prevent duplication and improve consistency
+* Not enforcing strong typing to reduce bugs
+* Not managing environment and configuration settings properly
+
+State management guidelines:
+* Choose a scalable state management solution based on app size
+* Options include:
+	+ Context API for small apps
+	+ Zustand for medium apps
+	+ Redux Toolkit for large apps
+* Keep global state minimal and prefer server state when possible
+
+Performance-oriented practices:
+* Prefer server components
+* Use dynamic imports for heavy modules
+* Split code by routes
+* Use `next/image` for optimization
+
+Utility layer guidelines:
+* Set up a shared utility layer to prevent duplication and improve consistency
+* Example directory structure:
+	+ `lib/`
+		- `constants.ts`
+		- `helpers.ts`
+		- `validators.ts`
+		- `logger.ts`
+To ensure a scalable architecture in Next.js applications, several best practices and guidelines should be followed. 
+
+* Environment variables should be explicitly typed to avoid runtime surprises, using declarations such as `declare namespace NodeJS { interface ProcessEnv { NEXT_PUBLIC_API_URL: string; } }`.
+* Absolute imports should be used, making imports cleaner and easier to manage, by configuring path aliases in the `compilerOptions` of the `tsconfig.json` file, such as `{"compilerOptions":{"baseUrl":".","paths":{"@/":["src/]"}}`.
+* ESLint should be used together with TypeScript rules to enforce best practices consistently, by extending the `next/core-web-vitals` and `plugin:@typescript-eslint/recommended` configurations.
+* Common mistakes to avoid include:
+  * Overusing the `any` type
+  * Ignoring strict mode warnings
+  * Repeating the same types in multiple places
+  * Leaving API responses untyped
+  * Skipping types for server-side logic
+* When using Server Components, Route Handlers, and Streaming, follow these guidelines:
+  * Leverage the benefits of fetching data on the server using Server Components
+  * Use Route Handlers to access backend resources from Client Components, but avoid calling Route Handlers from Server Components
+  * Use Loading UI and React Suspense to progressively send UI from the server to the client
+  * Fetch data in parallel where appropriate, and consider preloading data
+  * Verify whether data requests are being cached, and opt into caching where appropriate
+* Other best practices include:
+  * Using layouts to share UI across pages and enable partial rendering on navigation
+  * Using the `Link` component for client-side navigation and prefetching
+  * Gracefully handling catch-all errors and 404 errors in production by creating custom error pages
+  * Following recommended composition patterns for Server and Client Components, and checking the placement of `"use client"` boundaries to avoid unnecessarily increasing the client-side JavaScript bundle
+  * Being aware of the implications of using Dynamic APIs, such as `cookies` and `searchParams`, and ensuring their usage is intentional and wrapped in boundaries where appropriate.

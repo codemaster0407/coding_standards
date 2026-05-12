@@ -1,0 +1,18 @@
+[
+  {
+    "url": "https://google.github.io/styleguide/tsguide.html",
+    "file": "context/crawled/https_google_github_io_styleguide_tsguide_html.txt"
+  },
+  {
+    "url": "https://ts.dev/style/",
+    "file": "context/crawled/https_ts_dev_style.txt"
+  },
+  {
+    "url": "https://www.typescariptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html",
+    "file": "context/crawled/https_www_typescariptlang_org_docs_handbook_declaration_file.txt"
+  },
+  {
+    "url": "https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html",
+    "file": "context/crawled/https_docs_aws_amazon_com_prescriptive_guidance_latest_best.txt"
+  }
+]

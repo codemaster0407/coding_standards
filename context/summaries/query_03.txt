@@ -1,0 +1,79 @@
+To ensure high-performance Node.js APIs, the following coding standards and best practices can be adopted:
+* Set up a basic Node.js app with Express or Fastify
+* Use async/await everywhere
+* Store config in .env files
+* Use structured logging (Winston, Pino)
+* Add input validation with Joi or Zod
+* Start with REST unless the frontend really needs GraphQL
+* Add Prettier, ESLint, and Git hooks for consistency
+
+Key architectural standards include:
+* Microservices, async queues, internal APIs for scale-up
+* AKS, CI/CD, tracing, autoscaling for production-ready
+* Global infra, distributed databases, edge delivery for enterprise scale
+
+Best coding practices involve:
+* Consistent naming conventions
+* Type safety with TypeScript
+* Configuration management through environment variables
+* Dependency audits to remove vulnerable or outdated packages
+* Code reviews, linting, formatting tools, and automated tests
+
+Security measures include:
+* Rate limiting to protect APIs from brute-force attempts, traffic spikes, or malicious users
+* Security headers such as content security policies, strict transport security, and frame options
+* Structured logging and distributed tracing
+* Error logs and access logs with actionable information
+
+Pitfalls and anti-patterns to avoid:
+* Over-engineering too early
+* Not planning for distributed systems
+* Not using CI/CD and automation
+* Not maintaining documentation and predictable deployment procedures
+* Not incorporating code reviews into workflows
+
+Additional best practices:
+* Build like it'll scale from day one
+* Observability is more valuable than raw speed
+* Microservices are a trade-off: only split when you see real domain boundaries
+* Worker threads, efficient query planning, intelligent caching, and cluster-level orchestration for optimization
+* Evaluating sample code to assess modern coding standards, dependency management, and testing practices.
+Node.js coding standards and best practices include:
+* Using a universal runtime support such as Hono, which supports Node.js, Deno, Bun, and Cloudflare Workers
+* Implementing minimal bundle size and clean, modern API design
+* Utilizing built-in middleware for common requirements
+* Following first-class TypeScript support
+* Using JSON Schema for request and response validation, as seen in Fastify
+* Implementing logging integration with Pino and lifecycle hooks for fine-grained control over request processing
+
+Key features to consider:
+* Fastify for single-service APIs that require schema validation and good developer ergonomics
+* Encore.ts for production Node.js backends, which handles infrastructure provisioning, type-safe service communication, and API documentation
+* Express for general-purpose development where ecosystem maturity matters
+
+Common middleware use-cases include:
+* `morgan` for logging
+* `winston` and `pino` for logging
+* `express.json()` and `express.urlencoded()` for parsing requests
+* Error handling middleware, such as `app.use((err, req, res, next) => { ... })`
+
+Best practices for testing and test automation include:
+* Writing tests for essential functionality
+* Using CI/CD pipelines to run tests on every push
+* Utilizing tools such as Jest and Mocha for testing
+
+Performance optimization techniques include:
+* Using `async/await` for asynchronous code
+* Implementing compression to reduce response size
+
+Database layer best practices include:
+* Using an ORM such as Sequelize or TypeORM
+* Considering SQL builders like Knex.js for more control
+* Utilizing tools like `sequelize-cli` and `umzug` for database management
+
+Pitfalls and anti-patterns to avoid:
+* Not implementing logging and monitoring, which can lead to difficulties in debugging and troubleshooting
+* Not using a consistent coding style and conventions, which can lead to maintainability issues
+* Not following security best practices, which can lead to vulnerabilities and exploits
+* Not optimizing performance, which can lead to slow and unresponsive applications
+* Not using testing and test automation, which can lead to bugs and errors in production code

@@ -2,7 +2,7 @@ import asyncio
 from crawl4ai import *
 from helpers.url_regex import extract_https_urls
 
-async def main(url, max_depth = 10):
+async def main(url, max_depth = 1):
     async with AsyncWebCrawler() as crawler:
         result = await crawler.arun(
             url=url,
@@ -24,9 +24,6 @@ def start_async_crawl(initial_url, md=100, max_time=100):
     start_time = time.time()
     count = 0
     while queue and count < md:
-        if time.time() - start_time > max_time:
-            print(f"Reached time limit of {max_time}s. Stopping.")
-            break
 
         current_url = queue.pop(0)
         if current_url in visited:

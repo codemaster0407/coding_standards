@@ -1,0 +1,51 @@
+Component management for large-scale applications involves a well-structured component hierarchy and a clear folder structure. This can be achieved by:
+* Grouping related components logically to create an easily navigable code landscape
+* Using a feature-sliced folder structure to improve modularity and reduce developer friction
+* Adopting a methodology like Atomic Design, which classifies components into a hierarchy: 
+  * Atoms (inputs, buttons)
+  * Molecules (a search bar made of an input and a button)
+  * Organisms (a header containing a logo, navigation, and search bar)
+  * Templates
+  * Pages
+
+Component design patterns for scalability include:
+* Separating "smart" and "dumb" components, with "dumb" components being preferred as they are easier to work with, less buggy, and easier to test
+* Using React.forwardRef for higher-order components that need to pass refs to their wrapped components
+* Leveraging Context API for global state management instead of prop drilling
+* Using React.memo() for functional components
+
+Conventions for naming, structure, and formatting include:
+* Naming imports after the file name, with the first letter capitalized (e.g. `total.jsx` becomes `Total`)
+* Keeping the component as the default export
+* Grouping components based on the areas of the application where they're used, with a `core` folder for common components
+
+Pitfalls and anti-patterns to avoid include:
+* Not using a clear and consistent folder structure
+* Not separating concerns and having tightly coupled components
+* Using prop drilling instead of Context API for global state management
+* Not using proven design patterns like Atomic Design and custom hooks for creating reusable and maintainable components.
+To maintain a well-structured React application, several coding standards and best practices should be followed. 
+
+* Keep components organized by creating a component hierarchy, grouping related components together, and giving them descriptive and consistent names.
+* Establish clear naming conventions and use consistent design patterns throughout the codebase to ensure uniformity across components.
+* Avoid excessive use of wrapper components, as they can lead to a bloated component hierarchy that is difficult to maintain and modify.
+
+Separation of Concerns (SoC) is a key principle in software engineering, and in React, it is essential for modularity, testing, and scalability. A React application can be viewed through four core layers:
+* Presentation Layer (JSX/HTML/CSS): everything related to UI output
+* Business Logic Layer: the rules and decision-making behind each feature
+* Application Logic Layer: the flow of data and state, often managed through custom hooks
+* External World Layer (APIs, SDKs): integrations and external dependencies, kept isolated from UI concerns
+
+To apply SoC, keep each concern focused by:
+* Extracting business rules into standalone functions
+* Grouping API calls
+* Managing orchestration inside custom hooks
+
+The Composition Pattern offers a cleaner approach to building components by:
+* Building components using smaller, focused subcomponents
+* Composing the UI using children or subcomponents, rather than stacking props and conditionals
+
+When adding libraries, consider the following:
+* Can React or plain JavaScript handle this?
+* Lean stacks improve performance and make onboarding smoother for future contributors
+* Avoid overusing libraries, as each dependency adds weight, risk, and long-term maintenance overhead.

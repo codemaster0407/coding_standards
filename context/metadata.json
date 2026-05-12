@@ -1,0 +1,32 @@
+{
+  "techstack": [
+    "TypeScript",
+    "Node.js",
+    "React",
+    "Next.js",
+    "Neon",
+    "Postgres",
+    "React Testing Library",
+    "Prettier",
+    "Drizzle",
+    "Monorepo"
+  ],
+  "tavily_search_prompts": [
+    "Best practices for TypeScript coding standards in a monorepo",
+    "Next.js coding standards for scalable frontend development",
+    "Node.js backend coding standards for high-performance APIs",
+    "React component architecture best practices for large-scale applications",
+    "Drizzle ORM best practices for database schema management",
+    "Neon serverless Postgres connection optimization techniques",
+    "Prettier configuration best practices for consistent code formatting",
+    "React Testing Library best practices for unit testing and integration testing",
+    "Monorepo folder structure and package management best practices",
+    "TypeScript coding standards for maintainable and efficient codebases"
+  ],
+  "links": [
+    "https://google.github.io/styleguide/tsguide.html",
+    "https://ts.dev/style/",
+    "https://www.typescariptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html",
+    "https://docs.aws.amazon.com/prescriptive-guidance/latest/best-practices-cdk-typescript-iac/typescript-best-practices.html"
+  ]
+}

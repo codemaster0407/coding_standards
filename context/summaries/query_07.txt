@@ -1,0 +1,13 @@
+Search Query: Prettier configuration best practices for consistent code formatting
+
+Source: https://www.digitalocean.com/community/tutorials/how-to-format-code-with-prettier-in-visual-studio-code
+## Conclusion
+
+Consistent code formatting plays a key role in improving readability, reducing errors, and simplifying collaboration. By setting up Prettier in Visual Studio Code, enabling format-on-save, and optionally integrating it with ESLint, you create a seamless development experience that scales 
+ and have the `prettier` option to just allow people to run Prettier over all their code and do it's magic.
+
+# ES/TSLint
+
+For a majority of my projects I use TSLint by Palantir. However, I would use ESLint for linting any JavaScript I write. TSLint is described as: [...] From their website, Prettier is described as:
+
+> Prettier is an opinionated code formatter. It enforces a consistent style by parsing your code and re-printing it with its own rules that take the maximum line length into account

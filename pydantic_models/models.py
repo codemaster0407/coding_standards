@@ -16,3 +16,12 @@ class DocumentContent(BaseModel):
     sections: List[Section] = Field(
         description="A list of extracted sections from the document."
     )
+
+
+class TechStackData(BaseModel):
+    techstack : List[str] = Field(
+        description="A list of tech stacks used in the problem statement."
+    ) 
+    tavily_search_prompts : List[str] = Field(
+        description = 'Tavily prompts for web search for respective tech stack for coding standards'
+    )

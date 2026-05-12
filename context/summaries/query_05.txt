@@ -1,0 +1,75 @@
+**Schema Definition**
+* Define indexes explicitly for foreign keys to avoid full table scans
+* Use `index()` on every foreign key column
+* Use `index()` on filtered/sorted columns (e.g. status, category, createdAt)
+* Use `references()` with explicit `onDelete` (e.g. `{ onDelete: 'cascade' }`)
+* Store money as `integer` (cents), not `real`/`float`
+
+**Conventions**
+* Separate columns into different files and reuse them across tables (e.g. `updated_at`, `created_at`, `deleted_at`)
+* Declare schema in one file (e.g. `schema.ts`) or group tables into separate files (e.g. `users.ts`, `messaging.ts`, `products.ts`)
+* Specify path to schema file in `drizzle.config.ts`
+
+**Best Practices**
+* Use `onConflictDoUpdate` for upserts, not check-then-insert
+* Use `returning()` result destructured as array
+* Use operator helpers (e.g. `eq`, `desc`, `inArray`) from 'drizzle-orm' for all conditions
+* Use `InferSelectModel`/`InferInsertModel` for type extraction
+* Pass `{ schema }` to `drizzle()` to enable query API
+* Use `foreign_keys = ON` pragma for SQLite
+* Use `journal_mode = WAL` for concurrent access in SQLite
+
+**Pitfalls and Anti-Patterns**
+* Not defining indexes for foreign keys, leading to full table scans
+* Using `real`/`float` for money, leading to rounding errors
+* Not specifying `onDelete` for foreign key references, leading to orphaned rows
+* Not using `onConflictDoUpdate` for upserts, leading to inefficient inserts
+
+**Database-Specific Best Practices**
+* For PostgreSQL: use identity columns over serial types
+* For SQLite: use `foreign_keys = ON` pragma and `journal_mode = WAL` for concurrent access
+* For timestamp handling: use date mode with timezone for optimal performance
+**Coding Standards and Best Practices**
+
+* Use precision 3 for the best balance between accuracy and storage efficiency.
+* Follow comprehensive indexing patterns based on production benchmarks for efficient indexing strategies.
+* Utilize type-safe enum patterns with full TypeScript integration for modern enum handling.
+* Implement a complete validation workflow with drizzle-zod for Zod integration and validation best practices.
+
+**Conventions for Naming, Structure, and Formatting**
+
+* Define schema in TypeScript, using pure TypeScript instead of a custom language.
+* Create a `.env` file to hold the PostgreSQL connection string in the format `postgresql://user:password@localhost:5432/my_db`.
+* Use functions and variables inside schema definitions.
+* Organize schema definitions in a `src/db/schema.ts` file.
+
+**Pitfalls and Anti-Patterns to Avoid**
+
+* Common pitfalls include:
+  * Relation name collisions with column names during introspection.
+  * Cyclic references generating inline `.references()` to avoid type errors.
+  * Inconsistent casing between schema.ts and relations.ts.
+  * Foreign key column duplication when constraint names match across multiple databases.
+* Avoid using `varbinary()` config in a ts schema file, as it may be ignored.
+* Be cautious when using `UNIQUE` and `NOT NULL` constraints, as they may not create a primary key.
+
+**Performance Optimization Techniques**
+
+* Use production-proven optimization patterns.
+* Consider a hybrid strategy for UUID and other ID strategies for the best of both worlds.
+* Optimize foreign key relationships and constraints using modern relationship patterns.
+
+**Latest Syntax Updates and Features**
+
+* Row-Level Security (RLS) support is available as of October 2024.
+* Generated columns can be used for computed values.
+* Use `bigint`, `number` modes for `SQLite`, `MySQL`, `PostgreSQL`, `SingleStore`, and `decimal` & `numeric` column types.
+* Be aware of changes in behavior of `sql-js` query preparation and fixed issues with `MySQL`, `SingleStore`, and `PostgreSQL` data types.
+thorId: integer('author_id').references(() => users.id),
+});`
+
+### 5. Generate and Push Migrations
+
+Drizzle Kit reads your TypeScript schema and generates the SQL for you.
+
+Create a `drizzle.config.ts` in your root:

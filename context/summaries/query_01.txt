@@ -1,0 +1,52 @@
+Key considerations for TypeScript coding standards in a monorepo include:
+* Using TypeScript project references to create stronger boundaries between packages and enforce better isolation
+* Utilizing path aliases to resolve dependencies and simplify imports
+* Implementing workspaces to manage the monorepo and handle package linking
+* Considering incremental builds and prebuilding packages to optimize performance and reduce memory usage
+
+Best practices for structuring a TypeScript monorepo include:
+* Splitting logic into separate packages to create smaller, self-contained, and maintainable units
+* Using project references to treat each package as an independent TypeScript program
+* Implementing workspaces and path aliases to manage dependencies and simplify code sharing
+
+Pitfalls and anti-patterns to avoid:
+* Not using project references, which can lead to tighter coupling between packages and make it harder to maintain and scale the monorepo
+* Not utilizing path aliases, which can result in long and cumbersome imports
+* Not considering incremental builds and prebuilding packages, which can lead to performance issues and increased memory usage
+
+Additional guidelines:
+* Use `nodenext` resolution and include `.js` extensions in source code
+* Consider using modern bundlers like Vite and Rspack, which are optimized for speed and often make in-place compilation sufficient
+* Keep in mind that prebuilding packages is not always necessary, and it's essential to weigh the benefits and drawbacks of prebuilding in your specific use case
+
+Key concepts to understand:
+* Project references: create stronger boundaries between packages and enforce better isolation
+* Path aliases: simplify imports and resolve dependencies
+* Workspaces: manage the monorepo and handle package linking
+* Incremental builds: optimize performance and reduce memory usage
+* Prebuilding packages: weigh the benefits and drawbacks in your specific use case
+To establish a well-structured monorepo, the following guidelines can be adopted:
+* Use a simple and scalable structure, such as:
+  * `apps/` for runnable applications
+  * `libs/` for shared runtime code
+  * `packages/` for tooling and shared configuration
+* Keep shared configurations, such as ESLint, Prettier, and TypeScript, in `packages/` and treat them as ordinary workspace packages.
+* Use Path Aliases to replace long import paths with user-supplied keys for imports.
+* For shared Prettier configurations, add `@example/prettier-config` to each workspace and point the `prettier` field to it in `package.json`.
+* Keep `.prettierignore` files duplicated in each workspace and at the root, as they cannot be shared.
+* Use a consistent naming convention, such as using `AGENTS.md` or `CLAUDE.md` for AI agent instructions.
+* Consider using Yarn workspaces for flexibility in partial builds.
+* Use GitHub actions, such as `has-changed-path`, to check if a particular workspace has changed and run steps only when necessary.
+* Configure Prettier and ESLint to run only for specific packages in a monorepo by adding `script` definitions in `package.json`.
+* Use a code editor like VSCode with settings such as:
+  * `editor.codeActionsOnSave` enabled for ESLint
+  * `files.eol` set to `\n`
+  * `editor.formatOnSave` disabled
+* Consider disabling `sourceOfProjectReferenceRedirect` in VSCode to prevent performance problems, but ensure TypeScript files are recompiled when changed.
+Pitfalls and anti-patterns to avoid include:
+* Using direct imports with relative paths, as this can become cumbersome in larger monorepos
+* Not keeping runtime code separate from tooling concerns
+* Not using a consistent naming convention
+* Not configuring Prettier and ESLint to run only for specific packages in a monorepo
+* Not using GitHub actions to optimize build processes
+* Not considering performance problems in code editors like VSCode.
