@@ -19,15 +19,23 @@ def create_docx_from_json(json_path, output_path):
         header_text = section.get('header_text', '')
         text_content = section.get('text', '')
 
-        # Map header types to docx levels
+        # Map header types to docx levels and set sizes
         if header_type == 'h1':
-            doc.add_heading(header_text, level=1)
+            h = doc.add_heading(header_text, level=1)
+            for run in h.runs:
+                run.font.size = Pt(11)
         elif header_type == 'h2':
-            doc.add_heading(header_text, level=2)
+            h = doc.add_heading(header_text, level=2)
+            for run in h.runs:
+                run.font.size = Pt(10)
         elif header_type == 'h3':
-            doc.add_heading(header_text, level=3)
+            h = doc.add_heading(header_text, level=3)
+            for run in h.runs:
+                run.font.size = Pt(10)
         elif header_type == 'h4':
-            doc.add_heading(header_text, level=4)
+            h = doc.add_heading(header_text, level=4)
+            for run in h.runs:
+                run.font.size = Pt(10)
         else:
             # For p or others, just add a bold line or similar if header exists
             if header_text:
@@ -36,7 +44,26 @@ def create_docx_from_json(json_path, output_path):
         
         # Add the main text content
         if text_content:
-            doc.add_paragraph(text_content)
+            # Split text into lines to detect bullet points
+            lines = text_content.split('\n')
+            for line in lines:
+                clean_line = line.strip()
+                if not clean_line:
+                    continue
+                
+                if clean_line.startswith('*'):
+                    # Add as a bullet point
+                    bullet_text = clean_line[1:].strip()
+                    p = doc.add_paragraph(bullet_text, style='List Bullet')
+                    # Set font size to 10pt
+                    for run in p.runs:
+                        run.font.size = Pt(10)
+                else:
+                    # Add as a normal paragraph
+                    p = doc.add_paragraph(clean_line)
+                    # Set font size to 10pt
+                    for run in p.runs:
+                        run.font.size = Pt(10)
 
     # Save the document
     doc.save(output_path)

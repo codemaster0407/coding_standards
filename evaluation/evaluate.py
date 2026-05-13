@@ -3,6 +3,7 @@ from nltk.translate.bleu_score import sentence_bleu, SmoothingFunction
 from rouge_score import rouge_scorer
 from helpers.docx_reader import read_docx
 
+
 # Download necessary NLTK data (only needed once)
 for resource in ['punkt', 'punkt_tab']:
     try:

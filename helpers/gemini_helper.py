@@ -71,7 +71,7 @@ RAW TEXT CHUNK:
 def gemini_generate_final_document(summaries_text: str, pydantic_class) -> str:
     """
     Takes the concatenated bullet-point summaries produced by gemini_summarise_chunk
-    and generates a final, coherent 3000 word coding standards document structured
+    and generates a final, coherent 1200 word coding standards document structured
     as the provided Pydantic class (DocumentContent).
 
     This is the REDUCE step of the Map-Reduce pipeline.
@@ -127,18 +127,17 @@ the tech stack (TypeScript, React/Next.js, Drizzle, Prettier, Monorepo).
 10. Review Process & Enforcement
 
 IMPORTANT RULES:
-- The total document MUST be approximately 1200-1300 words.
-- Each section must contain substantive, actionable content — not vague generalities.
+- The TOTAL document MUST be approximately 1200 words.
+- Each of the 10 sections should be approximately 100-150 words long.
+- Be concise and technical. Avoid introductory "fluff" or redundant transition sentences.
 - Use only * for bullet points (not **).
-- Do not add extra blank lines between bullets.
+- Place each bullet point on a NEW LINE.
 - Do not generate text with ** characters at all.
 - Only use information grounded in the provided summaries; do not invent facts.
-
-
 """
 
     response = client.models.generate_content(
-        model='gemini-1.5-pro',
+        model='gemini-2.5-flash',
         contents=prompt,
         config=types.GenerateContentConfig(
             response_mime_type="application/json",
@@ -181,22 +180,65 @@ def gemini_api_call_for_coding_standard_doc(raw_text: str, pydantic_class) -> st
 
     Notes:
     1. Do not add any extra information which is not present in the raw text.
-    2. For bullet points, use only single *. Do not use double ** for bolding text.
+    2. For bullet points, use only single *. Place each bullet point on a NEW LINE.
     3. The document should be no longer than 6 pages.
-    4. Do not add any extra new lines.
-    7. Generate text without ** characters at all. 
-    5. The output should not contains ** in the generated string.
-    6. The word count should be around 1100 words.
+    4. Do not add any extra new lines (except for bullets).
+    5. Generate text without ** characters at all. 
+    6. The word count MUST be around 1200 words.
     """
 
     print(f"   -> Sending raw text to Gemini for structured extraction...")
 
     response = client.models.generate_content(
-        model='gemini-1.5-flash',
+        model='gemini-2.5-flash',
         contents=prompt,
         config=types.GenerateContentConfig(
             response_mime_type="application/json",
             response_schema=pydantic_class,
+            temperature=0.0
+        )
+    )
+    return response.text
+
+
+def gemini_text_evaluator(required_output_rubric: str, generated_content: str) -> str:
+    """
+    Evaluates the generated coding standards against the client's deliverables rubric.
+    Uses Gemini 1.5 Pro for high-context reasoning across large rubrics.
+    """
+    client = _get_client()
+    
+    prompt = f"""
+You are a Senior Technical Quality Auditor. Your task is to evaluate a generated "Engineering Coding Standards" document against a set of "Client Deliverables" (the rubric).
+
+CLIENT DELIVERABLES RUBRIC (130+ items):
+{required_output_rubric}
+
+GENERATED CONTENT TO EVALUATE:
+{generated_content}
+
+---
+EVALUATION TASKS:
+1. COMPLIANCE CHECK: Review all items in the rubric. Since the rubric is very long, GROUP the items into logical categories (e.g., Tech Stack, Project Structure, Frontend, Backend, Database, Testing, PR Process).
+2. CATEGORY-BASED AUDIT: In the compliance table, report on these CATEGORIES rather than every individual line.
+3. GAP ANALYSIS: Explicitly list any mandatory tech stack components (TypeScript, React, Drizzle, etc.) that were missed.
+4. WORD COUNT VERIFICATION: The client requested ~1200 words. Verify the actual length.
+
+OUTPUT FORMAT:
+- **OVERALL SCORE**: [0-100]
+- **EXECUTIVE SUMMARY**: (Concise overview)
+- **COMPLIANCE AUDIT TABLE**: 
+| Category | Status (Met/Partial/Missing) | Summary of Gaps/Evidence |
+| :--- | :--- | :--- |
+| (Category Name) | ... | ... |
+- **SPECIFIC MISSING DELIVERABLES**: (List the most critical individual items from the rubric that were not found)
+- **FINAL VERDICT**: (Pass/Fail/Needs Revision)
+"""
+
+    response = client.models.generate_content(
+        model='gemini-2.5-flash-lite',
+        contents=prompt,
+        config=types.GenerateContentConfig(
             temperature=0.0
         )
     )

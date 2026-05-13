@@ -108,25 +108,25 @@ async def run_consolidated_pipeline():
     # print(f"Chunk summaries saved to {summaries_path} ({len(summaries_text):,} chars)")
 
     # ------------------------------------------------------------------ #
-    summaries_text = ""
-    with open('context/chunk_summaries.md', 'r') as f:
-        summaries_text = f.read()
-    print("\n--- STEP 4b: Generating Final 2000-Word Document (REDUCE phase) ---")
-    # print(f"  Sending {len(summaries_text)} summaries to Gemini for final generation...")
-    try:
-        json_result_str = gemini_generate_final_document(summaries_text, DocumentContent)
-        final_document = DocumentContent.model_validate_json(json_result_str)
-    except Exception as e:
-        print(f"[ERROR] Final document generation failed: {e}")
-        raise
+    # summaries_text = ""
+    # with open('context/chunk_summaries.md', 'r') as f:
+    #     summaries_text = f.read()
+    # print("\n--- STEP 4b: Generating Final 1200-Word Document (REDUCE phase) ---")
+    # # print(f"  Sending {len(summaries_text)} summaries to Gemini for final generation...")
+    # try:
+    #     json_result_str = gemini_generate_final_document(summaries_text, DocumentContent)
+    #     final_document = DocumentContent.model_validate_json(json_result_str)
+    # except Exception as e:
+    #     print(f"[ERROR] Final document generation failed: {e}")
+    #     raise
 
     extracted_json_path = "context/coding_standards_extracted.json"
-    with open(extracted_json_path, "w") as f:
-        f.write(final_document.model_dump_json(indent=4))
-    print(f"Extracted data saved to {extracted_json_path}")
+    # with open(extracted_json_path, "w") as f:
+    #     f.write(final_document.model_dump_json(indent=4))
+    # print(f"Extracted data saved to {extracted_json_path}")
 
-    # 6. GENERATE DOCX
-    print("\n--- STEP 5: Generating Word Document ---")
+    # # 6. GENERATE DOCX
+    # print("\n--- STEP 5: Generating Word Document ---")
     output_docx = 'output/Coding_Standards.docx'
     create_docx_from_json(extracted_json_path, output_docx)
     print(f"Final document created: {output_docx}")
