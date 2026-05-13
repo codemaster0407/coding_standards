@@ -1,25 +1,30 @@
 # Engineering Coding Standards Automation
 
-This project automates the process of extracting, structuring, and generating formal engineering coding standards for a product agency. It uses a combination of web crawling and Generative AI (Google Gemini) to transform raw documentation into a professional Word document.
+This project automates the creation of professional engineering coding standards for product agencies. It uses a **Map-Reduce architecture** to process large volumes of technical documentation and a **multi-stage evaluation pipeline** to ensure compliance with client deliverables.
 
-## Architecture
+## 🏗️ Pipeline Architecture
 
-![GenAI Architecture Diagram](GenAI%20.drawio.png)
+The system follows a three-stage automated workflow:
 
-The pipeline consists of the following stages:
-1.  **Task Prompting:** Defining the scope and technical requirements.
-2.  **Web Crawling:** Extracting links and documentation from specified sources.
-3.  **Context Creation:** Aggregating raw text from multiple sources into a unified context.
-4.  **Data Chunking:** Splitting large contexts to fit within model token limits.
-5.  **GenAI Processing:** Using **Gemini 2.5 Flash** to perform structured extraction based on Pydantic models.
-6.  **Document Generation:** Converting the structured JSON output into a professional `.docx` file using Python.
+### 1. Discovery & Ingestion
+- **Tavily Search:** Identifies industry best practices based on configurable queries in `data/tavily_queries.json`.
+- **Async Crawling:** Scrapes documentation from search results and primary sources listed in `data/webpages.json`.
 
-## Getting Started
+### 2. Map-Reduce Synthesis
+- **Map Phase (Summarization):** Large datasets are chunked and summarized by **Gemini 1.5 Flash**. The model uses the `deliverables.txt` rubric as a filter to extract only relevant technical patterns.
+- **Reduce Phase (Generation):** Summaries are synthesized into a structured 1200-word document. The model ensures mandatory sections (Governance, Rollout, Tech Stack) are prioritized.
+- **Document Assembly:** The final structured JSON is converted into a professional Word document (`output/Coding_Standards.docx`) with optimized formatting (11pt headers, 10pt body).
+
+### 3. Automated Evaluation (`eval_entrypoint.py`)
+This project includes a rigorous evaluation suite to verify document quality:
+- **Statistical Metrics:** Calculates **BLEU** and **ROUGE** scores comparing the generated standards against a reference document. Results are saved to `output/nltk-metrics.json`.
+- **LLM Quality Audit:** Uses **Gemini 1.5 Pro** to perform a deep-dive audit against a 132-item rubric. It produces a categorized compliance report in `output/client_compliance_audit.md` with an overall score and gap analysis.
+
+## 🚀 Getting Started
 
 ### Prerequisites
 - Python 3.10+
-- Google GenAI API Key
-- Tavily API Key (for web search)
+- API Keys: Google Gemini, Tavily
 
 ### Installation
 1. Clone the repository.
@@ -27,24 +32,31 @@ The pipeline consists of the following stages:
    ```bash
    pip install -r requirements.txt
    ```
-3. Set up your `.env` file:
+3. Configure your `.env`:
    ```env
-   GEMINI_API_KEY=your_api_key
-   TAVILY_KEY=your_tavily_key
+   GEMINI_API_KEY=your_key
+   TAVILY_KEY=your_key
    ```
 
-### Running the Pipeline
-To run the extraction process:
+### Execution
+Run the full generation pipeline:
 ```bash
-python temp.py
-```
-To generate the Word document:
-```bash
-python json_to_docx.py
+python main.py
 ```
 
-## Tech Stack
-- **AI:** Google Gemini (2.5 Flash)
-- **Crawler:** Custom Python-based crawler
+Run the quality evaluation:
+```bash
+python eval_entrypoint.py
+```
+
+## 📊 Outputs
+- `output/Coding_Standards.docx`: The final professional document.
+- `output/nltk-metrics.json`: Statistical comparison data.
+- `output/client_compliance_audit.md`: Detailed LLM audit report.
+
+## 🛠️ Tech Stack
+- **AI Models:** Gemini 2.0 Flash (Generation), Gemini 2.5 Pro (Auditing)
 - **Data Validation:** Pydantic
-- **Document Output:** python-docx
+- **Search:** Tavily API
+- **NLP:** NLTK, ROUGE-Score
+- **Document Processing:** python-docx
