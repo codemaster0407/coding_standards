@@ -59,7 +59,7 @@ RAW TEXT CHUNK:
 """
 
     response = client.models.generate_content(
-        model='gemini-2.5-flash-lite',
+        model='gemini-1.5-flash',
         contents=prompt,
         config=types.GenerateContentConfig(
             temperature=0.1
@@ -127,17 +127,18 @@ the tech stack (TypeScript, React/Next.js, Drizzle, Prettier, Monorepo).
 10. Review Process & Enforcement
 
 IMPORTANT RULES:
-- The total document MUST be approximately 1500-1800 words.
+- The total document MUST be approximately 1200-1300 words.
 - Each section must contain substantive, actionable content — not vague generalities.
 - Use only * for bullet points (not **).
 - Do not add extra blank lines between bullets.
+- Do not generate text with ** characters at all.
 - Only use information grounded in the provided summaries; do not invent facts.
 
 
 """
 
     response = client.models.generate_content(
-        model='gemini-2.5-flash-lite',
+        model='gemini-1.5-pro',
         contents=prompt,
         config=types.GenerateContentConfig(
             response_mime_type="application/json",
@@ -181,13 +182,17 @@ def gemini_api_call_for_coding_standard_doc(raw_text: str, pydantic_class) -> st
     Notes:
     1. Do not add any extra information which is not present in the raw text.
     2. For bullet points, use only single *. Do not use double ** for bolding text.
-    3. Do not add any extra new lines
+    3. The document should be no longer than 6 pages.
+    4. Do not add any extra new lines.
+    7. Generate text without ** characters at all. 
+    5. The output should not contains ** in the generated string.
+    6. The word count should be around 1100 words.
     """
 
     print(f"   -> Sending raw text to Gemini for structured extraction...")
 
     response = client.models.generate_content(
-        model='gemini-2.5-flash-lite',
+        model='gemini-1.5-flash',
         contents=prompt,
         config=types.GenerateContentConfig(
             response_mime_type="application/json",

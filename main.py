@@ -127,7 +127,7 @@ async def run_consolidated_pipeline():
 
     # 6. GENERATE DOCX
     print("\n--- STEP 5: Generating Word Document ---")
-    output_docx = 'Coding_Standards.docx'
+    output_docx = 'output/Coding_Standards.docx'
     create_docx_from_json(extracted_json_path, output_docx)
     print(f"Final document created: {output_docx}")
 
