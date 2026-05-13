@@ -4,6 +4,8 @@ This project automates the creation of professional engineering coding standards
 
 ## 🏗️ Pipeline Architecture
 
+![GenAI Architecture Diagram](GenAI%20.drawio.png)
+
 The system follows a three-stage automated workflow:
 
 ### 1. Discovery & Ingestion
@@ -18,7 +20,7 @@ The system follows a three-stage automated workflow:
 ### 3. Automated Evaluation (`eval_entrypoint.py`)
 This project includes a rigorous evaluation suite to verify document quality:
 - **Statistical Metrics:** Calculates **BLEU** and **ROUGE** scores comparing the generated standards against a reference document. Results are saved to `output/nltk-metrics.json`.
-- **LLM Quality Audit:** Uses **Gemini 1.5 Pro** to perform a deep-dive audit against a 132-item rubric. It produces a categorized compliance report in `output/client_compliance_audit.md` with an overall score and gap analysis.
+- **LLM Quality Audit:** Uses **Gemini 2.5 Pro** to perform a deep-dive audit against a 132-item rubric. It produces a categorized compliance report in `output/client_compliance_audit.md` with an overall score and gap analysis.
 
 ## 🚀 Getting Started
 
