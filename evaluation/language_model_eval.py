@@ -6,7 +6,7 @@ def run_llm_evaluation():
     # 1. Define paths
     deliverables_path = "data/reference_files/deliverables.txt"
     generated_doc_path = "output/Coding_Standards.docx"
-    output_report_path = "evaluation/client_compliance_audit.md"
+    output_report_path = "output/client_compliance_audit.md"
 
     print(f"--- Starting LLM-based Evaluation ---")
     

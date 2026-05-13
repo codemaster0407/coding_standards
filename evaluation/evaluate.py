@@ -34,6 +34,9 @@ def calculate_metrics(reference_text, candidate_text):
     }
 
 def evaluate_docs(ref_path, cand_path):
+    import json
+    import os
+
     reference = read_docx(ref_path)
     candidate = read_docx(cand_path)
     
@@ -48,4 +51,11 @@ def evaluate_docs(ref_path, cand_path):
     print(f"ROUGE-1:    {results['rouge1']:.4f}")
     print(f"ROUGE-2:    {results['rouge2']:.4f}")
     print(f"ROUGE-L:    {results['rougeL']:.4f}")
+
+    # Save to JSON
+    output_path = "output/nltk-metrics.json"
+    os.makedirs(os.path.dirname(output_path), exist_ok=True)
+    with open(output_path, "w") as f:
+        json.dump(results, f, indent=4)
+    print(f"\nMetrics saved to {output_path}")
 
