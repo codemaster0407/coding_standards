@@ -27,15 +27,15 @@ def create_docx_from_json(json_path, output_path):
         elif header_type == 'h2':
             h = doc.add_heading(header_text, level=2)
             for run in h.runs:
-                run.font.size = Pt(10)
+                run.font.size = Pt(11)
         elif header_type == 'h3':
             h = doc.add_heading(header_text, level=3)
             for run in h.runs:
-                run.font.size = Pt(10)
+                run.font.size = Pt(11)
         elif header_type == 'h4':
             h = doc.add_heading(header_text, level=4)
             for run in h.runs:
-                run.font.size = Pt(10)
+                run.font.size = Pt(11)
         else:
             # For p or others, just add a bold line or similar if header exists
             if header_text:
@@ -44,24 +44,30 @@ def create_docx_from_json(json_path, output_path):
         
         # Add the main text content
         if text_content:
-            # Split text into lines to detect bullet points
-            lines = text_content.split('\n')
-            for line in lines:
-                clean_line = line.strip()
-                if not clean_line:
+            # Split text by newline first
+            raw_lines = text_content.split('\n')
+            for raw_line in raw_lines:
+                clean_raw_line = raw_line.strip()
+                if not clean_raw_line:
                     continue
                 
-                if clean_line.startswith('*'):
-                    # Add as a bullet point
-                    bullet_text = clean_line[1:].strip()
-                    p = doc.add_paragraph(bullet_text, style='List Bullet')
-                    # Set font size to 10pt
-                    for run in p.runs:
-                        run.font.size = Pt(10)
+                # If the line contains multiple bullet markers (e.g. "* Item 1 * Item 2")
+                # we split them. Using regex to find " * " or starting "*"
+                import re
+                # Split by '*' but keep the content. We look for '*' at start or space+*
+                bullet_parts = re.split(r'(?<=^)\*\s*|(?<=\s)\*\s*', clean_raw_line)
+                
+                # Remove empty parts
+                bullet_parts = [p.strip() for p in bullet_parts if p.strip()]
+                
+                if clean_raw_line.startswith(('*', '-', '•')) or len(bullet_parts) > 1:
+                    for part in bullet_parts:
+                        p = doc.add_paragraph(part, style='List Bullet')
+                        for run in p.runs:
+                            run.font.size = Pt(11)
                 else:
                     # Add as a normal paragraph
-                    p = doc.add_paragraph(clean_line)
-                    # Set font size to 10pt
+                    p = doc.add_paragraph(clean_raw_line)
                     for run in p.runs:
                         run.font.size = Pt(10)
 
