@@ -19,43 +19,29 @@ def _get_client() -> genai.Client:
     return genai.Client(api_key=api_key)
 
 
-def gemini_summarise_chunk(chunk: str, chunk_index: int, total_chunks: int) -> str:
+def gemini_summarise_chunk(chunk: str, chunk_index: int, total_chunks: int, rubric_text: str = "") -> str:
     """
-    Summarises a single raw-text chunk into concise, bullet-point insights that
-    are relevant to software engineering coding standards.
-
-    This is the MAP step of the Map-Reduce pipeline: each chunk is independently
-    compressed so that all summaries together fit comfortably inside the context
-    window of the final generation call.
-
-    Returns a plain-text string (not JSON).
+    Summarises a single raw-text chunk into concise, bullet-point insights,
+    strictly filtered by the client's deliverables rubric.
     """
     client = _get_client()
 
     prompt = f"""\
-You are an expert technical writer specialising in software engineering coding standards.
+You are a Senior Technical Architect at a Product Agency. Your goal is to extract high-signal coding standards from a technical corpus.
 
-You are processing chunk {chunk_index} of {total_chunks} from a large corpus of scraped
-technical documentation about coding best practices.
+CLIENT DELIVERABLES RUBRIC (Use this to filter what is important):
+{rubric_text}
 
-Your task is to extract and condense ONLY the information that is directly relevant to
-creating a coding standards document for a product agency with the following tech stack:
-- TypeScript / Node.js (backend)
-- React / Next.js (frontend & APIs)
-- Neon-hosted PostgreSQL
-- React Testing Library
-- Prettier (code formatting)
-- Drizzle ORM
-- Monorepo structure
-
-Output a concise bullet-point summary (plain text, no JSON). Each bullet should capture
-one concrete, actionable coding standard or best practice. Discard any content that is
-not directly applicable to coding standards (e.g., marketing text, unrelated tutorials).
-
-Limit your output to at most 400 words. Be specific and technical.
-
-RAW TEXT CHUNK:
+TEXT CHUNK ({chunk_index}/{total_chunks}):
 {chunk}
+
+---
+STRICT INSTRUCTIONS:
+1. ONLY extract details, patterns, or architecture decisions that match the Tech Stack in the Rubric.
+2. IGNORE GENERIC ADVICE (e.g., "write clean code", "avoid inline styles", "use meaningful names").
+3. DO NOT hallucinate SCSS or other tools if the Rubric specifies Tailwind/Next.js.
+4. Focus on specific code-level patterns (e.g., "Use Drizzle's `eq` helper for filtering").
+5. Return a plain-text bulleted list. Limit to 400 words.
 """
 
     response = client.models.generate_content(
@@ -68,72 +54,32 @@ RAW TEXT CHUNK:
     return response.text
 
 
-def gemini_generate_final_document(summaries_text: str, pydantic_class) -> str:
+def gemini_generate_final_document(summaries_text: str, pydantic_class, rubric_text: str = "") -> str:
     """
     Takes the concatenated bullet-point summaries produced by gemini_summarise_chunk
-    and generates a final, coherent 1200 word coding standards document structured
-    as the provided Pydantic class (DocumentContent).
-
-    This is the REDUCE step of the Map-Reduce pipeline.
-
-    Returns a JSON string that can be validated against pydantic_class.
+    and generates a final, coherent 1200 word coding standards document,
+    ensuring 100% compliance with the Client Rubric.
     """
     client = _get_client()
 
     prompt = f"""\
-You are an Engineering Manager responsible for four software teams at a Product Agency
-that is hired by clients to augment and increase the delivery speed of internal software
-tools. You are responsible for four teams, each with five software engineers.
+You are a Lead Software Engineer at a Product Agency. You are synthesizing a final "Engineering Coding Standards" document for a VP of Engineering and 20 developers to reduce PR friction.
 
-The VP of Engineering is leading a new initiative to speed up the delivery time of
-software teams. The teams currently do pull request code reviews but there are no
-documented coding standards, which leads reviewers to rely on their own opinions and
-causes delivery delays and friction between authors and reviewers.
+CLIENT DELIVERABLES RUBRIC (Mandatory Checklist):
+{rubric_text}
 
-The tech stack is:
-- TypeScript / Node.js (backend)
-- React / Next.js (frontend & APIs)
-- Neon-hosted PostgreSQL
-- React Testing Library
-- Prettier (code formatting)
-- Drizzle ORM
-- Monorepo structure
-
-Below are condensed insights extracted from a large corpus of industry documentation
-and best-practice guides:
-
+TECHNICAL SUMMARIES (Input data):
 {summaries_text}
 
-
-
-[Analyze]: Consider the target audience (the VP and 20 engineers), the core problem
-(PR friction from subjective styling), and which insights above directly solve it.
-
-[Synthesize]: Identify the 5–8 most impactful coding standard themes that emerge from
-the summaries. Prioritise guidelines that are objective, enforceable, and specific to
-the tech stack (TypeScript, React/Next.js, Drizzle, Prettier, Monorepo).
-
-[Structure]: Write a complete, professional coding standards document of approximately
-3000 words. The document MUST include sections covering:
-1. Introduction & Purpose
-2. General Coding Principles
-3. TypeScript / Node.js Standards (naming, typing, async patterns)
-4. React / Next.js Standards (component structure, hooks, file organisation)
-5. Database & ORM Standards (Drizzle, Neon Postgres query patterns)
-6. Testing Standards (React Testing Library coverage, naming, structure)
-7. Code Formatting & Tooling (Prettier config, ESLint rules, monorepo)
-8. Documentation Standards (JSDoc, inline comments, README)
-9. PR, Branch Naming & Commit Message Guidelines
-10. Review Process & Enforcement
-
-IMPORTANT RULES:
-- The TOTAL document MUST be approximately 1200 words.
-- Each of the 10 sections should be approximately 100-150 words long.
-- Be concise and technical. Avoid introductory "fluff" or redundant transition sentences.
-- Use only * for bullet points (not **).
-- Place each bullet point on a NEW LINE.
-- Do not generate text with ** characters at all.
-- Only use information grounded in the provided summaries; do not invent facts.
+---
+CRITICAL INSTRUCTIONS:
+1. TOTAL WORD COUNT: You MUST generate approximately 1200 words in total.
+2. PER-SECTION LIMIT: Each major section in the Pydantic schema should be between 100 and 150 words.
+3. NO FLUFF: Do not use introductory filler or redundant transition sentences. Start every section with direct technical standards.
+4. RUBRIC COMPLIANCE: Ensure "Governance", "Maintenance", and "Rollout Strategy" sections are included as requested.
+5. TECH STACK: Strictly adhere to Next.js, TypeScript, Drizzle, and the rubric stack.
+6. FORMATTING: Use '*' for bullet points. MANDATORY: Every single bullet point MUST start on its own NEW LINE. Do not group multiple '*' on one line.
+7. Tone: Professional, authoritative, and actionable. No '**' bolding.
 """
 
     response = client.models.generate_content(
