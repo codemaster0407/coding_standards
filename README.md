@@ -33,7 +33,7 @@ This project automates the creation of professional engineering coding standards
 
 ## 🏗️ Pipeline Architecture
 
-![GenAI Architecture Diagram](GenAI%20.drawio.png)
+![GenAI Architecture Diagram](images/GenAI%20.drawio.png)
 
 The system follows a three-stage automated workflow:
 

@@ -1,2 +1,9 @@
+crawl4ai
+python-docx
+python-dotenv
+google-genai
+groq
 nltk
+pydantic
 rouge-score
+tavily-python
