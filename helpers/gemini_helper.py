@@ -45,7 +45,7 @@ STRICT INSTRUCTIONS:
 """
 
     response = client.models.generate_content(
-        model='gemini-1.5-flash',
+        model='gemini-2.0-flash',
         contents=prompt,
         config=types.GenerateContentConfig(
             temperature=0.1
@@ -104,11 +104,19 @@ def gemini_api_call_for_coding_standard_doc(raw_text: str, pydantic_class) -> st
     client = _get_client()
 
     prompt = f"""\
-    You are an Engineering Manager responsible for four software teams at a Product Agency that is hired by clients to augment and increase the delivery speed of internal software tools. You are responsible for four teams, each with five software engineers.
+    You are an Engineering Manager responsible for four software teams at a Product
+     Agency that is hired by clients to augment and increase the delivery speed of internal software tools. 
+     You are responsible for four teams, each with five software engineers.
 
-    The VP of Engineering is leading a new initiative to speed up the delivery time of software teams as there are leading indicators in recent reports that show an uptick in delivery times.
+    The VP of Engineering is leading a new initiative to speed up the delivery time of
+     software teams as there are leading indicators in recent reports that show an uptick in delivery times.
 
-    The software teams are doing pull request code reviews but there are no documented coding standards which leads reviewers to rely on their own opinions. This causes additional delays in delivery of code as it goes through review. It occasionally causes friction between authors and reviewers since the changes are occasionally viewed as preferences between different styles. The VP of Engineering wants a coding standards document to be the source of truth for all coding standards. The standards will provide clarity for reviewers and authors.
+    The software teams are doing pull request code reviews 
+    but there are no documented coding standards which leads reviewers to rely on their own opinions. 
+    This causes additional delays in delivery of code as it goes through review. It occasionally causes friction 
+    between authors and reviewers since the changes are occasionally viewed as preferences between different styles.
+     The VP of Engineering wants a coding standards document to be the source of truth for all coding standards.
+      The standards will provide clarity for reviewers and authors.
 
     This is the current tech stack:
     - TypeScript/Node for backend coding
@@ -120,9 +128,12 @@ def gemini_api_call_for_coding_standard_doc(raw_text: str, pydantic_class) -> st
     - Monorepo
 
     Raw Text from documentations : {raw_text}
-    [Analyze]: Analyze the context, target audience (the VP and the 20 engineers), and the core problem (PR friction over subjective styling).
-    [Synthesize]: Extract 3-5 core principles from the provided community guidelines (Google, TS Dev, AWS) that specifically solve subjective PR debates for our tech stack.
-    [Structure]: Outline the sections of the document to ensure flow, readability, and that all requested topics (testing, docs, PR/branch names, commits) are covered without exceeding the 6-page conceptual limit.
+    [Analyze]: Analyze the context, target audience (the VP and the 20 engineers), and the core problem 
+    (PR friction over subjective styling).
+    [Synthesize]: Extract 3-5 core principles from the provided community guidelines (Google, TS Dev, AWS) 
+    that specifically solve subjective PR debates for our tech stack.
+    [Structure]: Outline the sections of the document to ensure flow, readability, 
+    and that all requested topics (testing, docs, PR/branch names, commits) are covered without exceeding the 6-page conceptual limit.
 
     Notes:
     1. Do not add any extra information which is not present in the raw text.
@@ -158,7 +169,7 @@ def gemini_text_evaluator(required_output_rubric: str, generated_content: str) -
 You are a Senior Technical Quality Auditor. Your task is to evaluate a generated "Engineering Coding Standards" 
 document against a set of "Client Deliverables" (the rubric).
 
-CLIENT DELIVERABLES RUBRIC (130+ items):
+CLIENT DELIVERABLES RUBRIC (66 items):
 {required_output_rubric}
 
 GENERATED CONTENT TO EVALUATE:
@@ -173,7 +184,7 @@ categories (e.g., Tech Stack, Project Structure, Frontend, Backend, Database, Te
 4. WORD COUNT VERIFICATION: The client requested ~1200 words. Verify the actual length.
 
 OUTPUT FORMAT:
-- **OVERALL SCORE**: [0-100]
+- **OVERALL SCORE**: Based on the output rubric points (81)
 - **EXECUTIVE SUMMARY**: (Concise overview)
 - **COMPLIANCE AUDIT TABLE**: 
 | Category | Status (Met/Partial/Missing) | Summary of Gaps/Evidence |
@@ -181,6 +192,7 @@ OUTPUT FORMAT:
 | (Category Name) | ... | ... |
 - **SPECIFIC MISSING DELIVERABLES**: (List the most critical individual items from the rubric that were not found)
 - **FINAL VERDICT**: (Pass/Fail/Needs Revision)
+- The final output is converted to word document, we are only comparing the text generated. Therefore any points for the document format should be considered achieved.
 """
 
     response = client.models.generate_content(
