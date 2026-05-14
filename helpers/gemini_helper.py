@@ -181,7 +181,7 @@ EVALUATION TASKS:
 categories (e.g., Tech Stack, Project Structure, Frontend, Backend, Database, Testing, PR Process).
 2. CATEGORY-BASED AUDIT: In the compliance table, report on these CATEGORIES rather than every individual line.
 3. GAP ANALYSIS: Explicitly list any mandatory tech stack components (TypeScript, React, Drizzle, etc.) that were missed.
-4. WORD COUNT VERIFICATION: The client requested ~1200 words. Verify the actual length.
+4. The final output is converted to word document, we are only comparing the text generated. Therefore any points for the document format should be considered achieved.
 
 OUTPUT FORMAT:
 - **OVERALL SCORE**: Based on the output rubric points (81)
@@ -192,7 +192,7 @@ OUTPUT FORMAT:
 | (Category Name) | ... | ... |
 - **SPECIFIC MISSING DELIVERABLES**: (List the most critical individual items from the rubric that were not found)
 - **FINAL VERDICT**: (Pass/Fail/Needs Revision)
-- The final output is converted to word document, we are only comparing the text generated. Therefore any points for the document format should be considered achieved.
+
 """
 
     response = client.models.generate_content(
