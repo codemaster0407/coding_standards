@@ -155,7 +155,8 @@ def gemini_text_evaluator(required_output_rubric: str, generated_content: str) -
     client = _get_client()
     
     prompt = f"""
-You are a Senior Technical Quality Auditor. Your task is to evaluate a generated "Engineering Coding Standards" document against a set of "Client Deliverables" (the rubric).
+You are a Senior Technical Quality Auditor. Your task is to evaluate a generated "Engineering Coding Standards" 
+document against a set of "Client Deliverables" (the rubric).
 
 CLIENT DELIVERABLES RUBRIC (130+ items):
 {required_output_rubric}
@@ -165,7 +166,8 @@ GENERATED CONTENT TO EVALUATE:
 
 ---
 EVALUATION TASKS:
-1. COMPLIANCE CHECK: Review all items in the rubric. Since the rubric is very long, GROUP the items into logical categories (e.g., Tech Stack, Project Structure, Frontend, Backend, Database, Testing, PR Process).
+1. COMPLIANCE CHECK: Review all items in the rubric. Since the rubric is very long, GROUP the items into logical 
+categories (e.g., Tech Stack, Project Structure, Frontend, Backend, Database, Testing, PR Process).
 2. CATEGORY-BASED AUDIT: In the compliance table, report on these CATEGORIES rather than every individual line.
 3. GAP ANALYSIS: Explicitly list any mandatory tech stack components (TypeScript, React, Drizzle, etc.) that were missed.
 4. WORD COUNT VERIFICATION: The client requested ~1200 words. Verify the actual length.
